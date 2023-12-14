@@ -65,11 +65,15 @@ playBtn.addEventListener('click', function(){
             if (bombList.includes(i)) {
                 this.classList.add('bomb');
                 alert('HAI PERSO')
+                alert('Se vuoi giocare ancora clicca ok')
             }
             else {
                 if (!this.classList.contains('active')) {
                     this.classList.add('active');
                     counter++;
+                    if (counter == (select - bombList.length)) {
+                        alert('HAI VINTO')
+                    }
                 }
             }
             console.log('counter ' + counter);
