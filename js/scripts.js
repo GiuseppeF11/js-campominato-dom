@@ -64,8 +64,8 @@ playBtn.addEventListener('click', function(){
         cell.addEventListener('click', function () {
             if (bombList.includes(i)) {
                 this.classList.add('bomb');
-                /* alert('HAI PERSO')
-                alert('Se vuoi giocare ancora clicca ok') */
+                alert('HAI PERSO')
+                alert('Se vuoi giocare ancora clicca ok')
             }
             else {
                 if (!this.classList.contains('active')) {
