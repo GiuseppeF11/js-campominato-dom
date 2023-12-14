@@ -15,7 +15,7 @@ playBtn.addEventListener('click', function(){
     console.log('Level '+ select +' '+ typeof select)
 
     const bombList = [];
-        for (let x = 1; x < 16; x++) {
+        for (let x = 1; x <= 16; x++) {
             let bomb = generateRandomNumber (1 , select);
             console.log('bomba '+bomb +' '+ typeof bomb);
 
@@ -64,8 +64,8 @@ playBtn.addEventListener('click', function(){
         cell.addEventListener('click', function () {
             if (bombList.includes(i)) {
                 this.classList.add('bomb');
-                alert('HAI PERSO')
-                alert('Se vuoi giocare ancora clicca ok')
+                /* alert('HAI PERSO')
+                alert('Se vuoi giocare ancora clicca ok') */
             }
             else {
                 if (!this.classList.contains('active')) {
