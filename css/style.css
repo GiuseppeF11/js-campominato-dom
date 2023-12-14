@@ -58,9 +58,12 @@ main {
     height: calc(100% / 7);
 }
 
-.grid-container .cell.active {
+.active {
     background-color: rgb(20, 59, 174);
-    color: black;
+}
+
+.bomb {
+    background-color: red;
 }
 
 

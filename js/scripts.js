@@ -6,14 +6,31 @@ const gridContainer = document.querySelector('.grid-container');
 // Assegno anche il play button
 const playBtn = document.querySelector('button')
 
-
 //Quando clicco il play button partirà il ciclo
 playBtn.addEventListener('click', function(){
     gridContainer.innerHTML = '';
 
-//BONUS
-const select = parseInt(document.getElementById('difficulty').value);
-console.log('Level '+ select +' '+ typeof select)
+    //BONUS
+    const select = parseInt(document.getElementById('difficulty').value);
+    console.log('Level '+ select +' '+ typeof select)
+
+    const bombList = [];
+        for (let x = 1; x < 16; x++) {
+            let bomb = generateRandomNumber (1 , select);
+            console.log('bomba '+bomb +' '+ typeof bomb);
+
+            let foundArray = bombList.includes(bomb);
+            while(foundArray == true) {
+                bomb = generateRandomNumber (1 , select);
+                console.log('bomba '+bomb +' '+ typeof bomb);
+                foundArray = bombList.includes(bomb);
+            }
+
+            bombList.push(bomb);
+        }
+
+    
+        let counter = 0;
 
     //Il ciclo va da 1 a 100 (incluso) e si incrementa di un man mano
     for (let i = 1; i <= select; i++) {
@@ -39,24 +56,30 @@ console.log('Level '+ select +' '+ typeof select)
         //Metto l'indice (NB:che man mano si incrementa) nella cella, così da creare 100 celle quadrate
         cell.innerHTML = i;
 
+
         //Appendo la cella nella griglia
         gridContainer.append(cell);
-    
-        /* Al click della cella si deve:
-            1)stampare l'elemento che ha subito il click in console
-            2)aggiungere all'elemento cliccato la classe active (vedi CSS) 
-            3)stampare il contenuto dell'elemento in console
-        */
+
             
         cell.addEventListener('click', function () {
-            //1)
-            console.log(this);
-            
-            //2)
-            this.classList.add('active');
-    
-            //3)
-            console.log(this.innerHTML);
+            if (bombList.includes(i)) {
+                this.classList.add('bomb');
+                alert('HAI PERSO')
+            }
+            else {
+                if (!this.classList.contains('active')) {
+                    this.classList.add('active');
+                    counter++;
+                }
+            }
+            console.log('counter ' + counter);
+            const score = document.getElementById('score').innerHTML = counter;
         });
     }
 })
+
+
+// FUNZIONI
+function generateRandomNumber(min,max) {
+    return Math.floor(Math.random() * (max - min +1)) + min;
+}
