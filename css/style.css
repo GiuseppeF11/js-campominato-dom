@@ -63,7 +63,8 @@ main {
 }
 
 .bomb {
-    background-color: red;
+    background-image: url(https://t4.ftcdn.net/jpg/00/43/61/85/360_F_43618541_gbHVb99nGAjSQqoK2irJyJvbLJFEwffS.jpg);
+    background-size: cover;
 }
 
 
