@@ -15,7 +15,7 @@ playBtn.addEventListener('click', function(){
     console.log('Level '+ select +' '+ typeof select)
 
     const bombList = [];
-        for (let x = 1; x <= 16; x++) {
+        while (bombList.length < 16) {
             let bomb = generateRandomNumber (1 , select);
             console.log('bomba '+bomb +' '+ typeof bomb);
 
@@ -62,22 +62,34 @@ playBtn.addEventListener('click', function(){
 
             
         cell.addEventListener('click', function () {
-            if (bombList.includes(i)) {
-                this.classList.add('bomb');
-                alert('HAI PERSO')
-                alert('Se vuoi giocare ancora clicca ok')
-            }
-            else {
-                if (!this.classList.contains('active')) {
-                    this.classList.add('active');
-                    counter++;
-                    if (counter == (select - bombList.length)) {
-                        alert('HAI VINTO')
+
+            const allCickedBombs = document.querySelectorAll('.bomb');
+            console.log('Tutte le celle bomba: ', allCickedBombs, typeof allCickedBombs)
+            console.log('Bombe cliccate: ', allCickedBombs.length)
+
+            const allCickedCells = document.querySelectorAll('.active');
+            console.log('Tutte le celle cliccate: ', allCickedCells, typeof allCickedCells)
+            console.log('Celle cliccate: ', allCickedCells.length)
+
+
+            if (allCickedBombs.length == 0 && allCickedBombs.length < 16) {
+                if (bombList.includes(i)) {
+                    this.classList.add('bomb');
+                    this.innerHTML = '';
+                    alert('HAI PERSO...' + ' ' + 'Punteggio finale: '+ counter);
+                }
+                else {
+                    if (!this.classList.contains('active')) {
+                        this.classList.add('active');
+                        counter++;
+                        if (counter == (select - 16)) {
+                            alert('HAI VINTO')
+                        }
                     }
                 }
+                console.log('counter ' + counter);
+                const score = document.getElementById('score').innerHTML = counter;
             }
-            console.log('counter ' + counter);
-            const score = document.getElementById('score').innerHTML = counter;
         });
     }
 })
